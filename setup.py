@@ -7,7 +7,7 @@ setup(
     description="Downloads data from the Shopify API to local files",
 
     install_requires=[
-        'ShopifyAPI==2.5.0',
+        'ShopifyAPI==2.5.1',
         'click>=6.0'
     ],
 
