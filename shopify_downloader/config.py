@@ -21,3 +21,13 @@ def api_key() -> str:
 def password() -> str:
     """The password for accessing the Shopify API"""
     return 'mysupersecretpassword'
+
+def order_status() -> str:
+    """Optional argument on order status for retrieving a list of Shopify orders
+
+       open: All open orders (default)
+       closed: Show only closed orders
+       cancelled: Show only cancelled orders
+       any: Any order status
+    """
+    return 'open'

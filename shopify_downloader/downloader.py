@@ -43,7 +43,7 @@ def download_shopify_resource(shopify_resource: ShopifyResource):
     data = []
     page = 1
     while True:
-        resource = shopify_resource.find(limit=250, page=page)
+        resource = shopify_resource.find(limit=250, page=page, status=config.order_status())
         if len(resource) > 0:
             data.extend(resource)
             page += 1
