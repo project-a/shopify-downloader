@@ -39,11 +39,15 @@ def download_shopify_resource(shopify_resource: ShopifyResource):
         shopify_resource:  a Shopify resource e.g Customer, Order, Product
 
     """
+    from http.client import IncompleteRead
 
     data = []
     page = 1
     while True:
-        resource = shopify_resource.find(limit=250, page=page, status=config.order_status())
+        try:
+            resource = shopify_resource.find(limit=250, page=page, status=config.order_status())
+        except IncompleteRead as e:
+            resource = e.partial
         if len(resource) > 0:
             data.extend(resource)
             page += 1

@@ -115,7 +115,7 @@ The easiest way to install shopify-downloader is using pip
 
 In case you want to install it in a virtual environment:
 
-    $ git clone git@github.com:mara/mara/shopify-downloader.git shopify_downloader
+    $ git clone git@github.com:mara/shopify-downloader.git shopify_downloader
     $ cd shopify_downloader
     $ python3 -m venv .venv
     $ .venv/bin/pip install .
