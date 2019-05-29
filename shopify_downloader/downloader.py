@@ -39,16 +39,32 @@ def download_shopify_resource(shopify_resource: ShopifyResource):
         shopify_resource:  a Shopify resource e.g Customer, Order, Product
 
     """
-    from http.client import IncompleteRead
+    from time import sleep
 
     data = []
     page = 1
+    previous_page = 0
     while True:
-        try:
-            resource = shopify_resource.find(limit=250, page=page, status=config.order_status())
-        except IncompleteRead as e:
-            resource = e.partial
+        number_of_attempts = 0
+        while True:
+            try:
+                resource = shopify_resource.find(limit=250, page=page, status=config.order_status())
+                if len(resource) > 0 or (previous_page == page):
+                    break
+            except:
+                if number_of_attempts < 5:
+                    duration = 4 * number_of_attempts + 1
+                    logging.info(
+                        'Loading shopify data retry #{attempt} in {duration} seconds'.format(attempt=number_of_attempts,
+                                                                                             duration=duration))
+                    sleep(duration)
+                    number_of_attempts += 1
+                else:
+                    raise
+
+            previous_page = page
         if len(resource) > 0:
+            previous_page = page
             data.extend(resource)
             page += 1
         else:

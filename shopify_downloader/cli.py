@@ -29,6 +29,7 @@ def apply_options(kwargs):
 @config_option(config.api_key)
 @config_option(config.password)
 @config_option(config.data_dir)
+@config_option(config.order_status)
 def download_data(**kwargs):
     """
     Downloads data.
