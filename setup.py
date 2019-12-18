@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='shopify-downloader',
-    version='1.0.1',
+    version='1.1.0',
 
     description="Downloads data from the Shopify API to local files",
 
